@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react'; // Adicionei o useEffect
 import { addItem, removeItem, getItems } from '../services/api';
 
-export function Fila() {
+
+export function Fila({ onUpdate }: { onUpdate: () => void }) {
   const [item, setItem] = useState("");
   const [fila, setFila] = useState<string[]>([]); 
 
@@ -30,12 +31,18 @@ export function Fila() {
     await addItem(item, "fila");
     setItem(""); 
     carregarDados(); 
+      onUpdate(); 
   };
 
   const handleRemove = async () => {
     await removeItem("fila");
     carregarDados(); 
+      onUpdate(); 
   };
+
+
+    
+ 
 
   return (
     <div>

@@ -39,4 +39,16 @@ export async function removeItem(route: string) {
     }
 }
 	
-	
+
+
+export async function getStats() {
+    const API_URL: string = import.meta.env.VITE_API_URL || "http://localhost:3001/api";
+
+    try {
+        const response = await fetch(API_URL + "/stats");
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error("Erro ao buscar:", error);
+    }
+}

@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react'; // Adicionei o useEffect
 import { addItem, removeItem, getItems } from '../services/api';
 
-export function Lista() {
+
+export function Lista({ onUpdate }: { onUpdate: () => void }) {
   const [item, setItem] = useState("");
   const [lista, setLista] = useState<string[]>([]); 
 
@@ -30,12 +31,18 @@ export function Lista() {
     await addItem(item, "lista");
     setItem(""); 
     carregarDados(); // Atualiza a lista após adicionar
+      onUpdate(); 
   };
 
   const handleRemove = async () => {
     await removeItem("lista");
     carregarDados(); // Atualiza a lista após remover
+      onUpdate(); 
   };
+
+
+
+
 
   return (
     <div>
