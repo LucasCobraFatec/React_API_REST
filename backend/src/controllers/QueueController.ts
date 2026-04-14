@@ -28,25 +28,20 @@ export class QueueController {
   }
 
   public peek(_req: Request, res: Response): void {
-    const top = queue.peek();
+    const first = queue.peek(); // Em filas, o peek olha o primeiro a chegar
 
-    if (top === undefined) {
+    if (first === undefined) {
       res.status(404).json({ erro: "A fila está vazia." });
       return;
     }
 
-    res.json({ topo: top });
+    res.json({ primeiro: first });
   }
 
+  // AQUI ESTÁ A MUDANÇA PRINCIPAL:
   public getAll(_req: Request, res: Response): void {
-    res.json({
-      estrutura: {
-        id: queue.getId(),
-        name: queue.name,
-      },
-      tamanho: queue.getSize(),
-      itens: queue.getItems(),
-    });
+    // Retornamos apenas o array de itens para o .map() do React não quebrar
+    res.json(queue.getItems());
   }
 
   public clear(_req: Request, res: Response): void {

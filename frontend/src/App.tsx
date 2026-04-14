@@ -58,8 +58,8 @@ function App() {
           </Link>
         </div>
         <div style={{ display: "flex", padding: "10px", gap: "20px" }}>
-          <span>Total: {stats ? stats.total : 0}</span>
-          <span>Resumo: {stats ? stats.resumo : 0}</span>
+            <span>Total: {stats?.total ?? 0}</span>
+            <span>Resumo: {stats?.resumo ?? "Nenhum"}</span>
         </div>
       </nav>
 
@@ -74,7 +74,6 @@ function App() {
             path="/"
             element={
               <h1>
-                Bem-vindo ao SE LIGA NESSES DEVS! 
                 Selecione uma estrutura no  menu.
               </h1>
             }

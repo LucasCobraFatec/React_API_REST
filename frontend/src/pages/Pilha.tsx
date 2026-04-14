@@ -8,7 +8,7 @@ export function Pilha({ onUpdate }: { onUpdate: () => void }) {
   // Função para buscar os dados do servidor
   const carregarDados = async () => {
     const dados = await getItems("pilha");
-    setPilha(dados || []);
+    setPilha(Array.isArray(dados) ? dados : []);
   };
 
   // Executa assim que a tela abre
@@ -18,7 +18,7 @@ export function Pilha({ onUpdate }: { onUpdate: () => void }) {
     const fetchData = async () => {
       const dados = await getItems("pilha");
       if (active) {
-        setPilha(dados || []);
+        setPilha(Array.isArray(dados) ? dados : []);
       }
     };
 

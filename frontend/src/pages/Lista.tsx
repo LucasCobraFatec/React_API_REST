@@ -34,11 +34,11 @@ export function Lista({ onUpdate }: { onUpdate: () => void }) {
       onUpdate(); 
   };
 
-  const handleRemove = async () => {
-    await removeItem("lista");
-    carregarDados(); // Atualiza a lista após remover
-      onUpdate(); 
-  };
+      const handleRemove = async (index: number) => {
+        await removeItem("lista", index); // Passa o índice que você quer apagar
+        carregarDados();
+        onUpdate();
+      };
 
 
 
@@ -53,7 +53,7 @@ export function Lista({ onUpdate }: { onUpdate: () => void }) {
         placeholder="Novo item..." 
       />
       <button onClick={handleAdd}>Adicionar na Lista</button>
-      <button onClick={handleRemove}>Remover da Lista</button>
+      <button onClick={() => handleRemove(lista.length - 1)}>Remover da Lista</button>
 
       
       <ul>
